@@ -17,13 +17,32 @@ app.get('/api/tasks', async (req, res) => {
     }
 })
 // Получить одну задачу по ID
-app.get('/api/tasks/:id', (req, res) => {
-    res.send(tasks.filter((t) => t.id === Number(req.params.id)));
+app.get('/api/tasks/:id', async (req, res) => {
+    const data = await tasks.readAll();
+    const oneTask = data.tasks.find(t => t.id === Number(req.params.id))
+    if (!oneTask) {
+        res.status(404).json({ error: 'Не удалось найти задачу' });
+    }
+    res.send(oneTask)
 })
 // Создать новую задачу
-app.post('/api/tasks', (req, res) => {
-    tasks.push({id: tasks.length + 1, title: req.body.title, completed: req.body.completed})
-    res.json(tasks);
+app.post('/api/tasks', async (req, res) => {
+    const { title, completed = false } = req.body ?? {};
+
+    if (typeof title !== 'string' || title.trim() === '') {
+        return res.status(400).json({ error: 'Пустой заголовок или не строка' });
+    }
+    if (typeof completed !== 'boolean') {
+        return res.status(400).json({ error: 'completed должен быть boolean' });
+    }
+
+    const data = await tasks.readAll();
+    const newTask = { id: data.nextId, title: title.trim(), completed };
+    data.tasks.push(newTask);
+    data.nextId++;
+    await tasks.writeAll(data);
+
+    res.status(201).json(newTask);
 })
 // Старт сервера
 app.listen(port, () => {
