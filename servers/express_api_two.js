@@ -20,18 +20,33 @@ app.get('/api/manage/tasks', async (req, res) => {
 })
 
 // Изменить статус задачи
-app.patch('/api/manage/tasks/:id', (req, res) => {
-    let index = tasks.findIndex(t => t.id === Number(req.params.id));
-    tasks[index].completed = req.body.completed;
-    res.send(tasks)
+app.patch('/api/manage/tasks/:id', async (req, res) => {
+    const id = Number(req.params.id);
+    const { completed } = req.body ?? {};
+    if (typeof completed !== 'boolean') {
+        return res.status(400).json({ error: 'completed должен быть boolean' });
+    }
+    const data = await tasks.readAll();
+    const task = data.tasks.find(t => t.id === id);
+    if (!task) {
+        return res.status(404).json({ error: 'Задача не найдена' });
+    }
+    task.completed = completed;
+    await tasks.writeAll(data);
+
+    res.json(task);
 })
 // Удалить задачу
-app.delete('/api/manage/tasks/:id', (req, res) => {
-    let index = tasks.findIndex(t => t.id === Number(req.params.id));
-    if (index !== -1) {
-        tasks.splice(index, 1);
+app.delete('/api/manage/tasks/:id', async (req, res) => {
+    const data = await tasks.readAll();
+    const id = Number(req.params.id);
+    const index = data.tasks.findIndex(t => t.id === id);
+    if (index === -1) {
+        return res.status(404).json({ error: 'Задача не найдена' });
     }
-    res.send(tasks);
+    data.tasks.splice(indexz, 1)
+    await tasks.writeAll(data);
+    return  res.status(204).end()
 })
 
 app.listen(port, () => {

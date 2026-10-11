@@ -19,9 +19,13 @@ app.get('/api/tasks', async (req, res) => {
 // Получить одну задачу по ID
 app.get('/api/tasks/:id', async (req, res) => {
     const data = await tasks.readAll();
-    const oneTask = data.tasks.find(t => t.id === Number(req.params.id))
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id)) {
+        return res.status(400).json({ error: 'id должен быть числом' });
+    }
+    const oneTask = data.tasks.find(t => t.id === id)
     if (!oneTask) {
-        res.status(404).json({ error: 'Не удалось найти задачу' });
+        return res.status(404).json({ error: 'Не удалось найти задачу' });
     }
     res.send(oneTask)
 })
