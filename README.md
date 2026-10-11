@@ -17,10 +17,26 @@
 
 ## Стек
 
-- Node.js, Express 5
-- Caddy 2 (reverse proxy, статика, сжатие)
-- jQuery, Bootstrap 5
-- nodemon для разработки
+**Бэкенд**
+- Node.js — среда выполнения
+- Express 5.3 — два сервера (API 1 и API 2), роутинг, `express.json()` для разбора JSON
+- `fs.promises` — чтение и запись `data/tasks.json` (`async`/`await`)
+- JSON-файл как общее хранилище задач для обоих серверов
+
+**Инфраструктура**
+- Caddy 2.11 — reverse proxy на два Express-сервера (`reverse_proxy`, `handle`), раздача статики (`file_server`), сжатие `zstd`/`gzip`, заголовки ответа
+- nodemon 3.1 — автоперезапуск серверов при разработке
+- npm — управление зависимостями
+
+**Фронтенд**
+- HTML5, CSS3 (свой `style.css`)
+- Bootstrap 5.3 — вёрстка и адаптив (подключён через CDN)
+- jQuery 4.0 — запросы к API (`$.get`, `$.ajax`) и работа с DOM (подключён через CDN)
+
+**Инструменты**
+- Git и GitHub — контроль версий
+- Apidog / curl — проверка запросов
+- Chrome DevTools (вкладка Network) — отладка запросов
 
 ## Запуск
 
