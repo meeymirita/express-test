@@ -1,0 +1,6 @@
+node_modules/
+.idea/
+.env
+.DS_Store
+mini-todo-lab-plan.md
+mini-todo-lab-tz.md

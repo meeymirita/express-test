@@ -1,0 +1,55 @@
+{
+    "nextId": 11,
+    "tasks": [
+        {
+            "id": 1,
+            "title": "Изучить Caddy",
+            "completed": false
+        },
+        {
+            "id": 2,
+            "title": "Изучить Express",
+            "completed": false
+        },
+        {
+            "id": 3,
+            "title": "Изучить jQuery",
+            "completed": false
+        },
+        {
+            "id": 4,
+            "title": "Разобраться с HTTP-запросами",
+            "completed": true
+        },
+        {
+            "id": 5,
+            "title": "Изучить REST API",
+            "completed": false
+        },
+        {
+            "id": 6,
+            "title": "Научиться работать с fetch",
+            "completed": false
+        },
+        {
+            "id": 7,
+            "title": "Освоить маршрутизацию в Express",
+            "completed": true
+        },
+        {
+            "id": 8,
+            "title": "Настроить reverse proxy",
+            "completed": false
+        },
+        {
+            "id": 9,
+            "title": "Протестировать API через Apidog",
+            "completed": false
+        },
+        {
+            "id": 10,
+            "title": "Создать Todo-приложение",
+            "completed": false
+        }
+    ]
+}

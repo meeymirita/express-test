@@ -1,0 +1,370 @@
+:root {
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --text: #172554;
+    --muted: #7185a8;
+    --border: #e6edf7;
+    --background: #f4f7fc;
+}
+
+body {
+    min-height: 100vh;
+    background:
+            radial-gradient(circle at top left, #e5efff, transparent 35%),
+            var(--background);
+    color: var(--text);
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.navbar-custom {
+    background: linear-gradient(120deg, #1e3a5f, #294f80);
+    border-radius: 14px;
+    color: white;
+    padding: 16px 24px;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: white;
+    color: var(--primary);
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.todo-card {
+    background: rgba(255, 255, 255, .94);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 12px 40px rgba(35, 65, 110, .06);
+}
+
+.page-title {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    font-weight: 750;
+    letter-spacing: -.8px;
+}
+
+.subtitle {
+    color: var(--muted);
+}
+
+.form-control {
+    min-height: 48px;
+    border-color: #d6e1f2;
+    border-radius: 10px;
+    padding: 12px 15px;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
+}
+
+.btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+    border-radius: 10px;
+    font-weight: 600;
+    padding: 11px 18px;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+}
+
+.filter-btn {
+    border: 1px solid var(--border);
+    background: #f8faff;
+    color: #647a9d;
+    border-radius: 9px;
+    padding: 9px 16px;
+}
+
+.filter-btn.active {
+    color: white;
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.task-list {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 14px;
+    border-bottom: 1px solid #edf2fa;
+    transition: background .2s;
+}
+
+.task-item:last-child {
+    border-bottom: 0;
+}
+
+.task-item:hover {
+    background: #f8faff;
+}
+
+.task-check {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.task-title {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.task-item.completed .task-title {
+    color: #8493ad;
+    text-decoration: line-through;
+}
+
+.status {
+    flex-shrink: 0;
+    padding: 5px 11px;
+    border-radius: 30px;
+    background: #e8f1ff;
+    color: #2563eb;
+    font-size: .8rem;
+}
+
+.completed .status {
+    background: #d9fbe9;
+    color: #079455;
+}
+
+.icon-btn {
+    border: 0;
+    background: transparent;
+    color: #8295b5;
+    font-size: 19px;
+    padding: 3px 6px;
+    border-radius: 6px;
+}
+
+.icon-btn:hover {
+    background: #edf3ff;
+    color: var(--primary);
+}
+
+.delete-btn:hover {
+    background: #fff0f0;
+    color: #ef4444;
+}
+
+.stats {
+    background: #f7f9fe;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 18px;
+}
+
+.stat-item + .stat-item {
+    border-left: 1px solid #e1e9f5;
+}
+
+.stat-icon {
+    font-size: 26px;
+    color: var(--primary);
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: .85rem;
+}
+
+.stat-value {
+    font-size: 1.4rem;
+    font-weight: 750;
+}
+
+.empty-state {
+    padding: 38px 15px;
+    color: var(--muted);
+    text-align: center;
+}
+
+@media (max-width: 576px) {
+    .navbar-custom {
+        padding: 13px 15px;
+    }
+
+    .todo-card {
+        padding: 20px !important;
+    }
+
+    .task-item {
+        gap: 9px;
+        padding: 12px 9px;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .icon-btn {
+        padding: 3px;
+    }
+
+    .stat-item {
+        padding: 10px 5px;
+        gap: 6px;
+    }
+
+    .stat-icon {
+        display: none;
+    }
+
+    .stat-value {
+        font-size: 1.2rem;
+    }
+}
+
+/* Контейнер списка задач */
+.task-list {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+}
+
+/* Одна задача */
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 58px;
+    padding: 13px 14px;
+    border-bottom: 1px solid #edf2fa;
+    transition: background .2s ease, box-shadow .2s ease;
+}
+
+.task-item:last-child {
+    border-bottom: 0;
+}
+
+.task-item:hover {
+    background: #f8faff;
+}
+
+/* Чекбокс */
+.task-check {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+/* Название задачи */
+.task-title {
+    flex: 1;
+    min-width: 0;
+    color: var(--text);
+    font-size: .96rem;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Выполненная задача */
+.task-item.completed .task-title {
+    color: #8493ad;
+    text-decoration: line-through;
+}
+
+/* Статус */
+.status {
+    flex-shrink: 0;
+    padding: 5px 11px;
+    border-radius: 30px;
+    background: #e8f1ff;
+    color: #2563eb;
+    font-size: .8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.task-item.completed .status {
+    background: #d9fbe9;
+    color: #079455;
+}
+
+.icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #8295b5;
+    font-size: 19px;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+}
+
+.icon-btn:hover {
+    background: #edf3ff;
+    color: var(--primary);
+}
+
+.icon-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.delete-btn:hover {
+    background: #fff0f0;
+    color: #ef4444;
+}
+
+.empty-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 130px;
+    padding: 30px 15px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.6;
+}
+
+@media (max-width: 576px) {
+    .task-item {
+        gap: 9px;
+        padding: 12px 9px;
+    }
+
+    .task-title {
+        font-size: .9rem;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .icon-btn {
+        width: 28px;
+        height: 30px;
+    }
+}
